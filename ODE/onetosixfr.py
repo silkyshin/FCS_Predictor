@@ -1,6 +1,6 @@
 # Model info
 model_name = "1-2-3-4-5-6 linear stepwise"
-kinetic_constants = ['k1','k_-1','k2','k_-2','k3','k_-3','k4','k_-4','k5','k_-5']
+kinetic_constants = ['k1','k_1','k2','k_2','k3','k_3','k4','k_4','k5','k_5']
 
 def ode_model(t, M, k):
     M1, M2, M3, M4, M5, M6 = M
