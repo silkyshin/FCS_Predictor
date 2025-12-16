@@ -4,7 +4,7 @@ kinetic_constants = ['k1','K1','k_assoc','K23','K34','K45','K56']
 
 def ode_model(t, M, k):
     M1, M2, M3, M4, M5, M6 = M
-    k1, K1, k2, K2, k3, K3, k4, K4, k5, K5 = k
+    k1, K1, k_assoc, K23, K34, K45, K56 = k
 
     # Define reverse rates using equilibrium constants Kn
     k_1 = k1 / K1
