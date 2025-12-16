@@ -33,28 +33,42 @@ try:
 except AttributeError:
   raise AttributeError("Model file must define 'model_name' and 'kinetic_constant' variables")
 # 3.2 Ask for the constants
-_input = input(f"Enter values for {len(model_module.kinetic_constants)} kinetic constants (comma-separated):\n")
+k_input = input(f"\nEnter {len(model_module.kinetic_constants)} kinetic constants (comma-separated):\n")
 k_list = [float(x.strip()) for x in k_input.split(',')]
 if len(k_list) != len(model_module.kinetic_constants):
-    raise ValueError(f"You must enter exactly {len(model_module.kinetic_constants)} values.")
+    raise ValueError(f"You must enter exactly {len(model_module.kinetic_constants)} values")
 k = np.array(k_list)
-print("Kinetic constants used:", dict(zip(model_module.kinetic_constants, k)))
+print("\nKinetic constants used:")
+for name, val in zip(model_module.kinetic_constants, k):
+  print(f" {name} = {val}")
 
 # 4. Set initial concentrations
-M0_input = input("Enter initial concentrations (comma separated):")
-M0 = np. array([float(x.strip()) for x in M0_input.split(',')])
+num_species = None
+try:
+  num_species = len(model_module.ode_model.__code__.co_varnames) - 2
+except:
+  pass
+
+M0_input = input("\nEnter initial concentrations (comma separated):")
+M0 = np.array([float(x.strip()) for x in M0_input.split(',')])
+if len(M0) < 1:
+  raise ValueError("You must enter at least one concentration")
 
 # 5. Time span
-t_start = float(input("Enter start time (s): "))
-t_end = float(input("Enter end time (s): "))
+t_start = float(input("\nEnter start time (s): "))
+t_end   = float(input("Enter end time (s): "))
+num_points = int(input("Enter the number of timepoints:"))
+t_eval = np.linspace(t_start, t_end, num_points)
 t_span = (t_start, t_end)
 
 # 6. Solve ODE
-sol = solve_ivp(lambda t, m: model_module.ode_model(t, M, k),
+sol = solve_ivp(lambda t, M: model_module.ode_model(t, M, k),
                 t_span, M0, t_eval=t_eval, method='RK45')
 
 # 7. Save solution to CSV
-output_file = input("Enter filename to save solution (e.g., ODE_solution.csv): ")
+output_file = input("\nEnter filename to save solution (e.g., ODE_solution.csv): ")
+header = "t," + ",".join([f"M{i+1}" for i in range(sol.y.shape[0])])
 data_to_save = np.column_stack([sol.t, sol.y.T])  # time in first column, then species
 np.savetxt(output_file, data_to_save, delimiter=',', header="t," + ",".join([f"M{i+1}" for i in range(sol.y.shape[0])]), comments='')
+
 print(f"Solution saved to {output_file}")
