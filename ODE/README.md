@@ -1,7 +1,20 @@
-Filename, oligomerization model, fitting parameters
+Oligomerization models
 
-  onetosixfr.py, 1-2-3-4-5-6, k1 k-1 k2 k-2 k3 k-3 k4 k-4 k5 k-5
-  dhigherfr.py, 1-2-4-8, k1 k-1 k2 k-2 k3 k-3
-  evenorderfr.py, 1-2-4-6, k1 k-1 k2 k-2 k3 k-3
-  trimerfr.py, 1-3-6, k1 k-1 k2 k-2
 
+onetosix - linear oligomerization mode - 1-2-3-4-5-6
+
+dhigher - dimer-higher oligomer model - 1-2-4-8
+
+evenorder - even order oligomerization model - 1-2-4-6
+
+trimer - trimer nucleation oligomerization model - 1-3-6
+
+
+Suffixes
+
+
+fr - forward and reverse reaction rates are separate parameters
+
+feq - forward reaction rates and equilibrium constants are parameters
+
+assoc - forward reaction rate of k1 is a parameter, other forward reaction rates are assumed to be the same and defined as k_assoc. Equilibrium constants are parameters too.
