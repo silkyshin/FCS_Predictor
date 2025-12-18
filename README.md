@@ -1,5 +1,5 @@
 # FCS_predictor
-This repo contains scripts to solve ODEs of oligomerization pathways and predict what their FCS values G0 and τ would be.
+This repo contains scripts to solve ODEs of oligomerization pathways and predict what their FCS values G0 and τ would be, or just the autocorrelation curves at different timepoints. 
 
 Read the README in the ODE directory.  
 To predict with different oligomerization models, copy the format of the model scripts.
@@ -13,6 +13,7 @@ git clone https://github.com/silkyshin/FCS_Predictor.git
 ```
 python ODEsolver.py --model 'path/to/model.py'
 python FCS_predictor.py --csv 'path/to/csv' --sfactor 'scaling factor'
+python autocorr_predictor.py --csv 'path/to/csv' --sfactor 'scaling factor'
 ```
 
 ### Hydrodynamic radius, therefore diffusion time, scales as such:
