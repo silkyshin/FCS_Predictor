@@ -65,10 +65,10 @@ t_span = (t_start, t_end)
 def wrapped_ode(t, M):
   dM = model_module.ode_model(t, M, k)
   if len(dM) != len(M):
-    raise ValueError("ode_model returned incorrect vector length')
+    raise ValueError("ode_model returned incorrect vector length")
   return dM
     
-sol = solve_ivp(lambda t, M: model_module.ode_model(t, M, k),
+sol = solve_ivp(wrapped_ode,
                 t_span, M0, t_eval=t_eval, method='RK45')
 if not sol.success:
   raise RuntimeError(f"ODE solver failed: {sol.message}")
