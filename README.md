@@ -28,5 +28,5 @@ Folded proteins - 0.3-0.35
 Molten globules - 0.38-0.45  
 Compact IDPs - 0.4-0.45  
 Theta conditions - 0.5  
-Expanded IDPs (expanded chain) - 0.55-0.6  # unrealistic - this assumes that the protein is stretched out end to end.
+Expanded IDPs (expanded chain, unrealistic) - 0.55-0.6
 Amyloid fibrils - 0.9-1  
