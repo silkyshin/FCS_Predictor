@@ -6,7 +6,7 @@ To predict with different oligomerization models, copy the format of the model s
 
 ## Installation
 ```
-git clone https://github.com/silkyshin/FCS_Predictor.git
+git clone https://github.com/ben-shin/FCS_Predictor.git
 ```
 
 ## Usage
